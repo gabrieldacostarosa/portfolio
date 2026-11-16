@@ -1,0 +1,33 @@
+/* Opção C — "Cinema": tipografia gigante e cada projeto como um painel de tela cheia que se empilha ao rolar. */
+.skin-cinema .display { font-size: clamp(3.4rem, 13.2vw, 12.5rem); font-weight: 800; letter-spacing: -0.065em; line-height: 0.88; }
+.skin-cinema .display.sm { font-size: clamp(3rem, 10vw, 8.5rem); }
+.skin-cinema .sec-head h2 { font-weight: 800; letter-spacing: -0.055em; font-size: clamp(2.6rem, 7vw, 6rem); }
+.skin-cinema .dis h3, .skin-cinema .tl h3 { font-weight: 800; }
+.skin-cinema .stat b { font-weight: 800; font-size: clamp(3.8rem, 8vw, 7rem); }
+.skin-cinema .contact .big { font-weight: 800; font-size: clamp(3.8rem, 15vw, 14rem); }
+.skin-cinema .marquee span { font-weight: 800; font-size: clamp(2.2rem, 5vw, 4.4rem); }
+
+.skin-cinema .filters { margin-bottom: 36px; }
+.skin-cinema .works { display: block; width: 100vw; margin-left: calc(50% - 50vw); }
+.skin-cinema .works > li { position: sticky; top: 0; height: 100svh; min-height: 560px; }
+.skin-cinema .works > li:nth-child(1) { z-index: 1; } .skin-cinema .works > li:nth-child(2) { z-index: 2; } .skin-cinema .works > li:nth-child(3) { z-index: 3; }
+.skin-cinema .works > li:nth-child(4) { z-index: 4; } .skin-cinema .works > li:nth-child(5) { z-index: 5; } .skin-cinema .works > li:nth-child(6) { z-index: 6; }
+.skin-cinema .works > li:nth-child(7) { z-index: 7; } .skin-cinema .works > li:nth-child(8) { z-index: 8; }
+.skin-cinema .row { position: relative; height: 100%; justify-content: flex-end; border: 0; border-radius: 0; background: var(--bg); box-shadow: 0 -40px 90px rgba(0, 0, 0, 0.7); transform: none; border-top: 1px solid var(--line); }
+.skin-cinema .row:hover { transform: none; box-shadow: 0 -40px 90px rgba(0, 0, 0, 0.7); }
+.skin-cinema .cov { position: absolute; inset: 0; aspect-ratio: auto; border: 0; opacity: 0.5; transition: opacity 0.7s var(--ease); background: var(--bg); }
+.skin-cinema .row:hover .cov { opacity: 0.78; }
+.skin-cinema .cov::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, var(--bg) 6%, transparent 62%), linear-gradient(to right, var(--bg) 0%, transparent 62%); }
+.skin-cinema .cov-wide img { object-position: top center; }
+.skin-cinema .cov-phones { justify-content: flex-end; padding: 8vh 9vw 0 0; }
+.skin-cinema .cov-phones .ph { height: 84%; }
+.skin-cinema .meta { position: relative; z-index: 2; width: 100%; max-width: 1240px; margin-inline: auto; padding: 0 clamp(20px, 4vw, 48px) clamp(40px, 9vh, 96px); gap: 14px; flex: none; }
+.skin-cinema .meta .nm { font-size: clamp(3rem, 10.5vw, 9.5rem); font-weight: 800; letter-spacing: -0.065em; line-height: 0.88; }
+.skin-cinema .meta .sh { font-size: clamp(1rem, 1.6vw, 1.3rem); color: var(--ink); max-width: 46ch; }
+.skin-cinema .meta .idx { font-size: 0.9rem; }
+.skin-cinema .meta .go { font-size: 0.9rem; margin-top: 10px; }
+@media (max-width: 760px) {
+  .skin-cinema .works > li { height: 86svh; min-height: 480px; }
+  .skin-cinema .cov-phones { padding-right: 0; justify-content: center; }
+  .skin-cinema .cov-phones .ph { height: 58%; }
+}

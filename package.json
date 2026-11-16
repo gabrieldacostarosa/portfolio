@@ -1,0 +1,13 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portfólio de Gabriel da Costa: gerador estático PT/EN sem dependências.",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:all": "node tools/build-all.cjs",
+    "serve": "node tools/serve.cjs 8780 dist"
+  },
+  "engines": { "node": ">=18" }
+}

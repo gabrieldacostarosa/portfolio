@@ -1,0 +1,60 @@
+/* Opção D — "Catálogo": projetos apresentados como produtos numa vitrine. Vitrine que gira, blocos numerados com título gigante e número,
+   carrossel de cards com filtro por categoria (inspirado na estrutura de vitrines de e-commerce de nicho). */
+.skin-catalog .cat-hero { position: relative; margin-bottom: clamp(72px, 10vw, 128px); }
+.skin-catalog .cat-slides { display: grid; }
+.skin-catalog .cat-slide { grid-area: 1 / 1; display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.7s var(--ease), visibility 0.7s; }
+.skin-catalog .cat-slide.on { opacity: 1; visibility: visible; }
+.skin-catalog .cat-img { display: block; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.skin-catalog .cat-img .cov { aspect-ratio: 16 / 10; border: 0; }
+.skin-catalog .cat-kick { font: 500 0.74rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.skin-catalog .cat-spec h3 { font-weight: 800; font-size: clamp(2.4rem, 5vw, 4.4rem); letter-spacing: -0.055em; line-height: 0.95; margin: 12px 0 24px; }
+.skin-catalog .cat-spec ul { display: grid; gap: 0; margin-bottom: 28px; border-top: 1px solid var(--line); }
+.skin-catalog .cat-spec li { border-bottom: 1px solid var(--line); padding: 12px 0; color: var(--mute); font-size: 0.95rem; }
+.skin-catalog .cat-spec li b { color: var(--accent); font: 600 1.05rem var(--mono); margin-right: 6px; }
+.skin-catalog .cat-dots { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.skin-catalog .dot-btn { min-width: 46px; min-height: 36px; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--mute); font: 500 0.74rem var(--mono); letter-spacing: 0.06em; cursor: pointer; transition: all 0.25s; }
+.skin-catalog .dot-btn:hover { border-color: var(--accent); color: var(--accent); }
+.skin-catalog .dot-btn.on { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+
+.skin-catalog .feats { display: grid; gap: clamp(72px, 10vw, 136px); }
+.skin-catalog .feat { display: grid; gap: 32px; grid-template-columns: minmax(0, 1fr); align-items: center; }
+.skin-catalog .feat .n { font: 500 0.76rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.skin-catalog .feat h3 { font-weight: 800; font-size: clamp(2.7rem, 6.6vw, 5.8rem); letter-spacing: -0.065em; line-height: 0.9; margin: 16px 0 28px; }
+.skin-catalog .feat h3 em { font-style: normal; color: var(--accent); }
+.skin-catalog .feat-stat { display: flex; align-items: baseline; gap: 16px; border-top: 1px solid var(--line); padding-top: 18px; margin-bottom: 18px; }
+.skin-catalog .feat-stat b { font-weight: 800; font-size: clamp(2.6rem, 5vw, 4rem); letter-spacing: -0.05em; color: var(--accent); line-height: 0.9; }
+.skin-catalog .feat-stat span { color: var(--mute); font-size: 0.9rem; max-width: 28ch; line-height: 1.4; }
+.skin-catalog .feat p { color: var(--mute); max-width: 46ch; }
+.skin-catalog .dis-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; font: 500 0.8rem var(--mono); letter-spacing: 0.04em; border-bottom: 1px solid var(--line); padding-bottom: 3px; transition: color 0.2s, border-color 0.2s; }
+.skin-catalog .dis-link:hover { color: var(--accent); border-color: var(--accent); }
+.skin-catalog .feat-img { display: block; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.skin-catalog .feat-img .cov { aspect-ratio: 4 / 3; border: 0; transition: transform 0.9s var(--ease); }
+.skin-catalog .feat-img:hover .cov { transform: scale(1.03); }
+
+.skin-catalog .cat-browse { margin-top: clamp(80px, 11vw, 140px); }
+.skin-catalog .cat-browse-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 20px; }
+.skin-catalog .cat-browse-head h3 { font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 2.8rem); letter-spacing: -0.045em; }
+.skin-catalog .arrows { display: flex; gap: 8px; }
+.skin-catalog .arrows .pill { width: 44px; height: 44px; }
+.skin-catalog .cat-track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px 0 18px; scrollbar-width: thin; scrollbar-color: var(--accent) transparent; }
+.skin-catalog .cat-track > li { flex: 0 0 min(80vw, 340px); scroll-snap-align: start; min-width: 0; }
+.skin-catalog .cat-track > li[hidden] { display: none; }
+.skin-catalog .pcard { display: flex; flex-direction: column; height: 100%; background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; transition: border-color 0.3s, transform 0.5s var(--ease), box-shadow 0.5s var(--ease); }
+.skin-catalog .pcard:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 24px 60px -24px color-mix(in srgb, var(--accent) 35%, transparent); }
+.skin-catalog .pcard .cov { aspect-ratio: 4 / 3; border-radius: 0; }
+.skin-catalog .pcard:hover .cov-wide img { transform: scale(1.05); }
+.skin-catalog .pc-body { display: grid; gap: 8px; padding: 18px 18px 20px; flex: 1; align-content: start; }
+.skin-catalog .pc-kind { font: 500 0.68rem var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+.skin-catalog .pc-name { font-weight: 700; font-size: 1.45rem; letter-spacing: -0.04em; line-height: 1.1; }
+.skin-catalog .pc-spec { color: var(--mute); font-size: 0.9rem; }
+.skin-catalog .pc-stat { font: 400 0.78rem var(--mono); color: var(--mute); border-top: 1px solid var(--line); padding-top: 10px; margin-top: 4px; }
+.skin-catalog .pc-stat b { color: var(--accent); font-weight: 600; }
+.skin-catalog .pc-go { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; font: 500 0.76rem var(--mono); letter-spacing: 0.06em; color: var(--accent); }
+.skin-catalog .pc-go .ic { transition: transform 0.35s var(--ease); }
+.skin-catalog .pcard:hover .pc-go .ic { transform: translateX(6px); }
+
+@media (min-width: 900px) {
+  .skin-catalog .cat-slide { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 56px; }
+  .skin-catalog .feat { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 72px; }
+  .skin-catalog .feat:nth-child(even) .feat-img { order: -1; }
+}

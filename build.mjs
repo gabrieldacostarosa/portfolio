@@ -282,7 +282,12 @@ function homePage(l) {
 <section class="sec" id="escrita">
   <div class="wrap">
     <header class="sec-head" data-reveal><span class="num">03</span><h2>${esc(h.writingTitle)}</h2><p>${esc(h.writingLead)}</p></header>
-    <div class="samples">${h.samples.map((s) => `
+    <div class="samples">${h.samples.map((s) => s.kind === "doc" ? `
+      <figure class="sample doc" data-reveal>
+        <figcaption class="where">${esc(s.where)}</figcaption>
+        <h3>${esc(s.title)}</h3>
+        <ul class="bullets">${s.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      </figure>` : `
       <figure class="sample" data-reveal>
         <figcaption class="where">${esc(s.where)}</figcaption>
         <blockquote>“${esc(s.text)}”</blockquote>
@@ -345,6 +350,7 @@ function casePage(l, p, i, list) {
   const prev = list[(i - 1 + list.length) % list.length];
   const next = list[(i + 1) % list.length];
   const actions = [
+    p.links.docs ? `<a class="btn solid" href="${esc(p.links.docs)}" target="_blank" rel="noopener" data-magnet>${esc(c.docs)} ${icon("up")}</a>` : "",
     p.links.live ? `<a class="btn solid" href="${esc(p.links.live)}" target="_blank" rel="noopener" data-magnet>${esc(c.live)} ${icon("up")}</a>` : "",
     p.links.repo ? `<a class="btn line" href="${esc(p.links.repo)}" target="_blank" rel="noopener" data-magnet>${esc(p.kind === "docs" ? c.docsRepo : c.repo)} ${icon("up")}</a>` : "",
   ].join("");
@@ -443,6 +449,10 @@ cpSync("src/app.js", `${OUT}/assets/app.js`);
 cpSync("src/theme.js", `${OUT}/assets/theme.js`);
 for (const d of ["img", "fonts", "gif"]) if (existsSync(`assets/${d}`)) cpSync(`assets/${d}`, `${OUT}/assets/${d}`, { recursive: true });
 if (existsSync("assets/og.png")) cpSync("assets/og.png", `${OUT}/assets/og.png`);
+
+// Para deploy manual (arrastar a pasta no Netlify): _headers e _redirects dentro da pasta publicada têm o mesmo efeito do netlify.toml.
+write("_redirects", `/  /en/  302  Language=en\n/  /pt/  302\n`);
+write("_headers", `/*\n  X-Content-Type-Options: nosniff\n  X-Frame-Options: DENY\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'\n\n/assets/img/*\n  Cache-Control: public, max-age=86400\n`);
 
 if (SITE_URL) {
   const urls = [];

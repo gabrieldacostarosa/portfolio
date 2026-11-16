@@ -160,6 +160,9 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .where { font: 500 0.74rem var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
 .sample blockquote { font-weight: 600; font-size: clamp(1.5rem, 2.6vw, 2.2rem); line-height: 1.18; letter-spacing: -0.035em; }
 .sample .why { color: var(--mute); font-size: 0.95rem; max-width: 46ch; }
+.sample.doc h3 { font-weight: 700; font-size: clamp(1.4rem, 2.4vw, 1.9rem); line-height: 1.15; letter-spacing: -0.04em; }
+.sample.doc .bullets { gap: 12px; max-width: 62ch; }
+.sample.doc .bullets li { font-size: 0.95rem; }
 @media (min-width: 900px) {
   .samples { grid-template-columns: 1fr 1fr; }
   .sample:nth-child(odd) { padding-right: clamp(24px, 4vw, 64px); }

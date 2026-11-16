@@ -476,7 +476,7 @@ export const projects = [
     status: "docs",
     caseStudy: true,
     tags: ["Documentação técnica", "Mermaid", "Node.js", "PT/EN", "Arquitetura"],
-    links: { repo: "https://github.com/gabrieldacostarosa/energcalc-docs" },
+    links: { docs: "https://energcalc.netlify.app/docs/", repo: "https://github.com/gabrieldacostarosa/energcalc-docs" },
     cover: { type: "wide", imgs: ["ec-docs"] },
     gallery: [
       { img: "ec-docs", shape: "wide", alt: { pt: "Introdução: o produto, para quem é e como ler a documentação, com navegação por grupos, busca e índice da página", en: "Introduction: the product, who it is for and how to read the docs, with grouped navigation, search and page outline" } },

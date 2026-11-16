@@ -4,8 +4,8 @@
 export const profile = {
   location: { pt: "Florianópolis, Brasil · Remoto", en: "Florianópolis, Brazil · Remote" },
   proof: {
-    pt: "Há quase 2 anos documentando produtos de cibersegurança todos os dias, em inglês e português.",
-    en: "Almost 2 years documenting cybersecurity products every day, in English and Portuguese.",
+    pt: "Entusiasta de tecnologia, focado em documentar, planejar e estruturar. Atualmente trabalhando com cibersegurança.",
+    en: "Technology enthusiast focused on documenting, planning and structuring. Currently working in cybersecurity.",
   },
   quote: {
     pt: "Boa documentação começa rodando o código. Eu rodo, quebro e testo antes de escrever uma linha.",

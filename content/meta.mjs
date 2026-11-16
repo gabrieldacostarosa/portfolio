@@ -7,6 +7,14 @@ export const disciplineLabels = {
 };
 
 export const meta = {
+  condicionalmap: {
+    disciplines: ["writing", "product", "eng"],
+    short: { pt: "Vendas por condicional para lojas de roupa, com regras no banco e documentação completa.", en: "Try-at-home sales for clothing stores, with rules in the database and complete documentation." },
+    brief: {
+      pt: { problem: "Controlar a venda por condicional, que vive em caderno e WhatsApp, sem deixar uma sacola fechar errada e de um jeito que a equipe da loja use no celular.", role: "Produto, desenho, desenvolvimento e documentação, do zero, em validação com uma loja real.", result: "Ciclo garantido no banco, 73 testes de integração, mapa das sacolas e 16 páginas de documentação docs-as-code." },
+      en: { problem: "Controlling try-at-home sales, which live in notebooks and WhatsApp, without letting a bag close wrong and in a way the store team can use on a phone.", role: "Product, design, development and documentation, from scratch, being validated with a real store.", result: "A cycle enforced in the database, 73 integration tests, a bag map and 16 pages of docs-as-code documentation." },
+    },
+  },
   grimoryo: {
     disciplines: ["writing", "product", "eng"],
     short: { pt: "Auto-battler de magos com campanha narrativa e 99 testes.", en: "A wizard auto-battler with a narrative campaign and 99 tests." },

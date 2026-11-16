@@ -352,7 +352,7 @@ function casePage(l, p, i, list) {
   const actions = [
     p.links.docs ? `<a class="btn solid" href="${esc(p.links.docs)}" target="_blank" rel="noopener" data-magnet>${esc(c.docs)} ${icon("up")}</a>` : "",
     p.links.live ? `<a class="btn solid" href="${esc(p.links.live)}" target="_blank" rel="noopener" data-magnet>${esc(c.live)} ${icon("up")}</a>` : "",
-    p.links.repo ? `<a class="btn line" href="${esc(p.links.repo)}" target="_blank" rel="noopener" data-magnet>${esc(p.kind === "docs" ? c.docsRepo : c.repo)} ${icon("up")}</a>` : "",
+    p.links.repo ? `<a class="btn line" href="${esc(p.links.repo)}" target="_blank" rel="noopener" data-magnet>${esc(p.repoLabel ? p.repoLabel[l] : p.kind === "docs" ? c.docsRepo : c.repo)} ${icon("up")}</a>` : "",
   ].join("");
 
   const stills = p.gallery.length
@@ -368,7 +368,7 @@ function casePage(l, p, i, list) {
     </figure>`;
   }).join("");
   const gallery = stills || clips
-    ? `<section class="blk" id="telas"><h2 data-reveal>${esc(clips ? c.replays : c.gallery)}</h2><div class="gallery">${clips}${stills}</div>${m.mediaNote ? `<p class="note" data-reveal>${esc(m.mediaNote[l])}</p>` : ""}</section>`
+    ? `<section class="blk" id="telas"><h2 data-reveal>${esc(clips ? c.replays : c.gallery)}</h2>${p.carousel ? `<div class="carousel" data-carousel><div class="car-track">${stills}</div><div class="car-nav"><button type="button" class="car-btn" data-dir="-1" aria-label="${l === "pt" ? "Anterior" : "Previous"}">‹</button><span class="car-count" aria-live="polite"></span><button type="button" class="car-btn" data-dir="1" aria-label="${l === "pt" ? "Próxima" : "Next"}">›</button></div></div>` : `<div class="gallery">${clips}${stills}</div>`}${m.mediaNote ? `<p class="note" data-reveal>${esc(m.mediaNote[l])}</p>` : ""}</section>`
     : "";
 
   const layers = p.layers.length

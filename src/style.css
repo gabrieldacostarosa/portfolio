@@ -303,6 +303,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
 .shot { margin: 0; }
 .shot img, .shot video { width: 100%; border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg2); }
 .shot.phone { max-width: 320px; }
+.shot.mid { max-width: 640px; }
 .shot figcaption { font: 400 0.78rem var(--mono); color: var(--mute); padding-top: 10px; display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; }
 .shot figcaption a { color: var(--accent); border-bottom: 1px solid currentColor; }
 .disclaimer { border-top: 1px solid var(--line); padding-top: 22px; color: var(--mute); font-size: 0.9rem; }
@@ -339,3 +340,14 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-even
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
 
+
+/* Carrossel de telas (casos com poucas imagens-chave) */
+.carousel { position: relative; }
+.car-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.car-track::-webkit-scrollbar { display: none; }
+.car-track .shot { flex: 0 0 100%; max-width: none; scroll-snap-align: center; display: flex; flex-direction: column; }
+.car-track .shot img { height: clamp(240px, 46vw, 520px); object-fit: contain; width: 100%; }
+.car-nav { display: none; } .car-nav.on { display: flex; align-items: center; justify-content: center; gap: 18px; padding-top: 14px; }
+.car-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg2); color: var(--accent); font: 400 1.4rem/1 var(--mono); cursor: pointer; }
+.car-btn:hover, .car-btn:focus-visible { border-color: var(--accent); }
+.car-count { font: 400 0.8rem var(--mono); color: var(--mute); min-width: 4ch; text-align: center; }

@@ -151,4 +151,22 @@
     pimgEl.style.transform = "translate3d(0," + (k * -36) + "px,0) scale(1.08)";
   }
   onScroll();
+  // Carrossel de telas: setas, contador e rolagem suave (sem JS continua deslizável)
+  $$("[data-carousel]").forEach(function (car) {
+    var track = $(".car-track", car), slides = $$(".shot", track), nav = $(".car-nav", car), count = $(".car-count", car);
+    if (!track || slides.length < 2) return;
+    nav.classList.add("on");
+    var target = null, timer;
+    var idx = function () { return Math.round(track.scrollLeft / track.clientWidth); };
+    var show = function () { count.textContent = (idx() + 1) + " / " + slides.length; };
+    $$(".car-btn", car).forEach(function (b) {
+      b.addEventListener("click", function () {
+        var n = Math.max(0, Math.min(slides.length - 1, (target === null ? idx() : target) + Number(b.getAttribute("data-dir"))));
+        target = n; clearTimeout(timer); timer = setTimeout(function () { target = null; }, 700);
+        track.scrollTo({ left: n * track.clientWidth, behavior: reduce ? "auto" : "smooth" });
+      });
+    });
+    track.addEventListener("scroll", show, { passive: true });
+    show();
+  });
 })();

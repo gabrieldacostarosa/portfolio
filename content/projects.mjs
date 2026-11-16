@@ -110,7 +110,6 @@ export const projects = [
     ],
     facts: [
       { v: "8.40", k: { pt: "versão do protocolo falada pelo navegador", en: "protocol version spoken by the browser" } },
-      { v: "0", k: { pt: "portas abertas no computador para jogar com amigos", en: "ports opened on the computer to play with friends" } },
       { v: "PC · tablet · celular", k: { pt: "o mesmo cliente, com interface de toque", en: "same client, with a touch interface" } },
     ],
     layers: [
@@ -293,12 +292,15 @@ export const projects = [
     caseStudy: true,
     tags: ["Python", "Django 5", "PostgreSQL", "Supabase", "Render", "Netlify"],
     links: {}, // front: https://pfjauto.netlify.app (voltar a linkar quando o Supabase estiver respondendo de novo)
-    cover: { type: "wide", imgs: ["jr-diagram"] },
-    gallery: [],
+    cover: { type: "wide", imgs: ["jr-vitrine"] },
+    gallery: [
+      { img: "jr-vitrine", shape: "wide", alt: { pt: "Vitrine pública (PFJ Veículos): busca, filtros e cartões com destaque, ano, quilometragem, câmbio e preço, na época em que havia seis veículos à venda", en: "Public storefront (PFJ Veículos): search, filters and cards with a featured badge, year, mileage, gearbox and price, back when six vehicles were for sale" } },
+      { img: "jr-admin", shape: "wide", alt: { pt: "Painel administrativo em Django: lista de anúncios com status, destaque, visualizações, data e as ações editar, ver e desativar", en: "Django admin panel: listing table with status, featured flag, views, date and the edit, view and deactivate actions" } },
+    ],
     facts: [
-      { v: "2", k: { pt: "hospedagens independentes que se comunicam", en: "independent hosts that talk to each other" } },
+      { v: "3", k: { pt: "camadas: admin, dados e vitrine", en: "layers: admin, data and storefront" } },
       { v: "30", k: { pt: "testes automatizados do admin", en: "automated tests on the admin" } },
-      { v: "0", k: { pt: "regras de categoria no código", en: "category rules in code" } },
+      { v: "3", k: { pt: "papéis de acesso: usuário, vendedor e administrador", en: "access roles: user, seller and administrator" } },
     ],
     layers: [
       { label: { pt: "Admin (Django 5 · Render)", en: "Admin (Django 5 · Render)" }, nodes: [{ t: "Categorias e atributos dinâmicos", s: "herança entre categorias" }, { t: "Anúncios e fotos", s: "painel" }, { t: "Usuários e papéis", s: "ADMIN / ANUNCIANTE" }] },
@@ -314,9 +316,11 @@ export const projects = [
       built: [
         "Admin em Django 5 com categorias hierárquicas e atributos totalmente dinâmicos: novas categorias (imóveis, motos, eletrônicos) são criadas pelo painel, cada uma com seus atributos, sem alterar código. Atributos da categoria-mãe são herdados pelas subcategorias.",
         "Formulário de anúncio e motor de filtros gerados em tempo de execução a partir desses atributos; não existe nenhum `if categoria == \"carros\"` no código.",
-        "Papéis de administrador e anunciante com permissões testadas, inclusive um anunciante tentando editar anúncio de outro. Sem cadastro público de compradores.",
+        "Três papéis de acesso: usuário (visitante da vitrine, sem login), vendedor (anunciante) e administrador, com permissões testadas, inclusive um vendedor tentando editar anúncio de outro. Sem cadastro público de compradores.",
         "Vitrine pública estática no Netlify, com busca, filtros, ordenação, galeria, página de detalhe e contato por WhatsApp, lendo os anúncios por uma view pública do Supabase.",
         "Banco PostgreSQL em produção, imagens em armazenamento de objetos compatível com S3, contador de visualizações protegido contra contagem repetida na mesma sessão, e sitemap e robots.",
+        "Painel administrativo com a lista de anúncios (foto, título, categoria, preço, status, destaque, visualizações e data), as ações de editar, ver e desativar, e menus para resumo, categorias, atributos e anunciantes.",
+        "Vitrine com busca por marca, modelo ou palavra-chave, filtros, ordenação, selo de destaque e cartões com ano, quilometragem, câmbio e preço.",
       ],
       archNote: "O admin escreve; o front só lê, e apenas pela view pública. A view é o contrato entre as duas hospedagens.",
       decisions: [
@@ -334,6 +338,7 @@ export const projects = [
       next: [
         "Restabelecer a conexão com o Supabase, que hoje não responde, e voltar a publicar o link da vitrine. Enquanto isso o caso fica como estudo de arquitetura.",
         "Documentar o contrato da view como API versionada e testá-lo automaticamente a cada deploy do admin.",
+        "Mostrar uma imagem de reserva quando a foto de um anúncio não carrega: na captura da vitrine, alguns cartões aparecem com a imagem vazia.",
         "Reduzir a demora do admin: nos meus testes ele demorou a responder, comportamento típico de hospedagem gratuita que hiberna; um plano pago ou um aquecimento resolveria.",
       ],
     },
@@ -346,9 +351,11 @@ export const projects = [
       built: [
         "A Django 5 admin with hierarchical categories and fully dynamic attributes: new categories (real estate, motorcycles, electronics) are created in the panel, each with its own attributes, without changing code. Parent-category attributes are inherited by subcategories.",
         "The listing form and the filter engine are generated at runtime from those attributes; there is no `if category == \"cars\"` anywhere in the code.",
-        "Administrator and advertiser roles with tested permissions, including an advertiser trying to edit another's listing. No public buyer sign-up.",
+        "Three access roles: user (storefront visitor, no login), seller (advertiser) and administrator, with tested permissions, including a seller trying to edit another's listing. No public buyer sign-up.",
         "A static public storefront on Netlify, with search, filters, sorting, a gallery, a detail page and WhatsApp contact, reading listings through a public Supabase view.",
         "PostgreSQL in production, images in S3-compatible object storage, a view counter protected against repeat counting within a session, and a sitemap and robots file.",
+        "An admin panel with the listing table (photo, title, category, price, status, featured flag, views and date), the edit, view and deactivate actions, and menus for overview, categories, attributes and advertisers.",
+        "A storefront with search by brand, model or keyword, filters, sorting, a featured badge and cards with year, mileage, gearbox and price.",
       ],
       archNote: "The admin writes; the front only reads, and only through the public view. The view is the contract between the two hosts.",
       decisions: [
@@ -366,6 +373,7 @@ export const projects = [
       next: [
         "Restore the Supabase connection, which is currently not responding, and publish the storefront link again. Until then this case stands as an architecture study.",
         "Document the view contract as a versioned API and test it automatically on every admin deploy.",
+        "Show a placeholder image when a listing's photo fails to load: in the storefront capture, some cards show an empty image.",
         "Reduce the admin's response delay: in my tests it was slow to respond, typical of free hosting that sleeps; a paid plan or a warm-up would fix it.",
       ],
     },
@@ -656,4 +664,105 @@ export const projects = [
     },
   },
 
+  /* ============================ CONDICIONALMAP ============================ */
+  {
+    slug: "condicionalmap",
+    kind: "system",
+    status: "private",
+    caseStudy: true,
+    tags: ["JavaScript", "Node.js", "Netlify Functions", "Supabase", "PostgreSQL", "Leaflet", "Docs-as-code"],
+    links: { docs: "https://condicionalmap.netlify.app/docs/", repo: "https://github.com/gabrieldacostarosa/condicionalmap-docs" },
+    repoLabel: { pt: "Documentação no GitHub", en: "Documentation on GitHub" },
+    cover: { type: "wide", imgs: ["cm-app-painel"] },
+    carousel: true,
+    gallery: [
+      { img: "cm-app-painel", shape: "wide", alt: { pt: "Painel da loja (dados de exemplo): condicionais em aberto, prazo vencido, valor a receber e mapa das sacolas com filtro por situação", en: "Store dashboard (sample data): open try-at-homes, overdue, amount to collect and a bag map filtered by status" } },
+      { img: "cm-app-condicional", shape: "wide", alt: { pt: "Detalhe da condicional: etapas, peças e o painel de entrega com código de confirmação", en: "Try-at-home detail: stages, items and the delivery panel with a confirmation code" } },
+      { img: "cm-app-cliente", shape: "wide", alt: { pt: "Página da cliente no celular: código de entrega de 6 números e a escolha entre ficar ou devolver cada peça", en: "Customer page on mobile: a 6-digit delivery code and the keep-or-return choice for each item" } },
+      { img: "cm-diag-ciclo", shape: "mid", alt: { pt: "Documentação: diagrama de estados do ciclo da condicional", en: "Documentation: state diagram of the try-at-home cycle" } },
+    ],
+    facts: [
+      { v: "73", k: { pt: "casos de teste de integração, com travas de acesso para anônimo", en: "integration test cases, including access locks for anonymous users" } },
+      { v: "16", k: { pt: "páginas de documentação, em quatro grupos", en: "documentation pages, in four groups" } },
+      { v: "6", k: { pt: "diagramas Mermaid com zoom (fluxos, estados, dados e sequência)", en: "Mermaid diagrams with zoom (flows, states, data and sequence)" } },
+    ],
+    layers: [
+      { label: { pt: "Navegador", en: "Browser" }, nodes: [{ t: "HTML, CSS e JavaScript", s: "sem framework, mobile primeiro" }, { t: "Mapa das sacolas", s: "Leaflet + OpenStreetMap" }] },
+      { label: { pt: "Servidor", en: "Server" }, nodes: [{ t: "Netlify Functions", s: "Node, sem dependências" }, { t: "A loja vem do login", s: "nunca do navegador" }, { t: "Geocodificação", s: "Nominatim, dentro da política de uso" }] },
+      { label: { pt: "Banco (Supabase)", en: "Database (Supabase)" }, nodes: [{ t: "PostgreSQL com RLS fechada", s: "sem acesso direto" }, { t: "Chaves compostas", s: "id + store_id" }, { t: "Triggers", s: "ciclo e regras de negócio" }] },
+      { label: { pt: "Qualidade", en: "Quality" }, nodes: [{ t: "Testes de integração", s: "73 casos" }, { t: "Documentação", s: "16 páginas, docs-as-code" }] },
+    ],
+    pt: {
+      title: "CondicionalMap",
+      tagline: "Gestão de vendas por condicional para lojas de roupa: troca caderno e WhatsApp por um fluxo único, pensado primeiro para o celular, com regras garantidas no banco e documentação completa.",
+      role: "Produto, desenho, desenvolvimento e documentação, do zero, em validação com uma loja real",
+      context:
+        "Na venda por condicional, a loja envia peças para a cliente experimentar em casa; ela fica com o que quer, devolve o resto e paga só o que ficou. Na prática isso vive em caderno e WhatsApp, e ninguém sabe ao certo o que está com quem, o que venceu e quanto falta receber. O CondicionalMap nasceu para ser esse controle: simples o bastante para a equipe da loja usar no celular e rigoroso o bastante para não deixar uma sacola fechar errada. Está em validação com uma loja real em Florianópolis (SC), e o escopo cresce conforme o retorno da gerente.",
+      built: [
+        "Cadastro de clientes com o mínimo obrigatório (nome e WhatsApp) e condicionais por quantidade ou peça por peça.",
+        "Ciclo com regras garantidas no banco: aguardando entrega, com a cliente, devolvida e finalizada (há também o cancelamento antes da entrega). O sistema não deixa pular etapa nem fechar sem conferência e pagamento, ou sem justificativa de saldo em aberto.",
+        "A escolha da cliente fica separada da conferência da loja: o que a cliente diz que vai ficar não fecha a venda.",
+        "Pagamentos parciais, saldo a receber e histórico de auditoria de cada sacola.",
+        "Painel com o que está em aberto, o prazo vencido e o a receber, um gráfico de enviado e vendido (por dia, semana e mês), a conversão de peças e o ticket médio.",
+        "Mapa das sacolas: cada condicional no endereço da cliente, por cor (azul aguardando entrega, verde recebido, laranja prazo vencido, vermelho não recebido), com geocodificação automática do endereço.",
+        "Design próprio, chamado \"ateliê\" (linho, grafite e terracota), pensado primeiro para o celular.",
+        "Documentação em docs-as-code, escrita para dois públicos: a equipe da loja, em linguagem simples, e quem mantém o sistema.",
+      ],
+      archNote: "O navegador nunca fala com o banco: tudo passa por funções no servidor, e a loja vem sempre do login, nunca de um campo que o navegador possa trocar.",
+      decisions: [
+        { d: "O navegador nunca fala com o banco: RLS fechada e todo acesso pelo servidor", w: "Com a loja vinda sempre do login e nenhum caminho direto ao banco, a superfície de ataque fica pequena e a regra de quem vê o quê vive em um só lugar.", c: "Toda operação precisa de uma função no servidor, com mais código e uma ida e volta a mais." },
+        { d: "Isolamento entre lojas no próprio banco, com chaves estrangeiras compostas (id + store_id)", w: "Mesmo que um erro no código misture identificadores, o banco recusa ligar dados de lojas diferentes. O isolamento não depende de cada consulta lembrar de filtrar pela loja.", c: "Chaves compostas deixam o esquema e as consultas mais verbosos." },
+        { d: "Regras de negócio em triggers do PostgreSQL", w: "O ciclo da condicional vale para qualquer caminho que escreva no banco, seja a tela, uma função ou um script. Ninguém consegue pular etapa por um atalho.", c: "Lógica fora do código da aplicação exige testes de integração e disciplina com as migrações." },
+        { d: "Escolha da cliente separada da conferência da loja", w: "Reflete o processo real: a cliente escolhe, mas é a loja que confere o que voltou. Isso evita fechar uma venda por engano com base só no que foi dito.", c: "Um passo a mais no fluxo da loja." },
+        { d: "HTML, CSS e JavaScript sem framework, com funções Node sem dependências", w: "Poucas peças, deploy simples e nada para atualizar ou para quebrar sozinho. O sistema é pequeno o bastante para uma pessoa entender inteiro.", c: "Sem a estrutura de um framework, a organização do código depende de disciplina." },
+        { d: "Mapa com Leaflet e OpenStreetMap, e geocodificação com o Nominatim dentro da política de uso", w: "Um mapa gratuito e sem chave, que mostra onde cada sacola está sem violar os limites do serviço.", c: "Ritmo limitado de consultas e dependência de um serviço de terceiros." },
+      ],
+      quality: [
+        "73 casos de teste de integração, incluindo as travas de acesso para usuário anônimo.",
+        "A documentação inclui uma página de solução de problemas com todas as mensagens do sistema, o que significam e o que fazer, e uma seção técnica com arquitetura, banco, modelo de ameaças, instalação e publicação.",
+        "O código do sistema é privado; só a documentação é pública, e ela não cita a loja nem dados de clientes.",
+      ],
+      next: [
+        "Seguir o retorno da gerente da loja para decidir o que entra a seguir: o escopo cresce a partir do uso real.",
+        "Gerar a página de mensagens do sistema a partir do próprio código, para que a documentação nunca divirja das mensagens reais.",
+      ],
+      note: "O código do CondicionalMap é privado. Este caso mostra o sistema e a sua documentação pública. A documentação está em português.",
+    },
+    en: {
+      title: "CondicionalMap",
+      tagline: "Try-at-home sales management for clothing stores: it replaces notebooks and WhatsApp with a single flow, designed phone-first, with rules enforced in the database and complete documentation.",
+      role: "Product, design, development and documentation, from scratch, being validated with a real store",
+      context:
+        "In a \"condicional\" sale, the store sends garments for the customer to try on at home; she keeps what she wants, returns the rest and pays only for what she kept. In practice this lives in notebooks and WhatsApp, and nobody knows for sure what is with whom, what is overdue and how much is still to be collected. CondicionalMap was born to be that control: simple enough for the store team to use on a phone and strict enough not to let a bag close wrong. It is being validated with a real store in Florianópolis (SC), and the scope grows with the manager's feedback.",
+      built: [
+        "Customer records with the bare minimum (name and WhatsApp) and try-at-home orders by quantity or piece by piece.",
+        "A cycle with rules enforced in the database: awaiting delivery, with the customer, returned and finished (there is also cancellation before delivery). The system doesn't let anyone skip a stage or close without checking and payment, or without a justification for an open balance.",
+        "The customer's choice is kept separate from the store's check: what the customer says she will keep does not close the sale.",
+        "Partial payments, balance to collect and an audit history for every bag.",
+        "A dashboard with what is open, what is overdue and what is to be collected, a sent-versus-sold chart (by day, week and month), piece conversion and average ticket.",
+        "A bag map: each order at the customer's address, by color (blue awaiting delivery, green received, orange overdue, red unpaid), with automatic address geocoding.",
+        "A custom design called \"atelier\" (linen, graphite and terracotta), designed phone-first.",
+        "Documentation as code, written for two audiences: the store team, in plain language, and whoever maintains the system.",
+      ],
+      archNote: "The browser never talks to the database: everything goes through server functions, and the store always comes from the login, never from a field the browser could change.",
+      decisions: [
+        { d: "The browser never talks to the database: RLS closed and all access through the server", w: "With the store always coming from the login and no direct path to the database, the attack surface stays small and the rule of who sees what lives in one place.", c: "Every operation needs a server function, with more code and one more round trip." },
+        { d: "Isolation between stores in the database itself, with composite foreign keys (id + store_id)", w: "Even if a bug in the code mixes identifiers, the database refuses to link data from different stores. Isolation doesn't depend on every query remembering to filter by store.", c: "Composite keys make the schema and the queries more verbose." },
+        { d: "Business rules in PostgreSQL triggers", w: "The order cycle holds for any path that writes to the database, whether it is the screen, a function or a script. Nobody can skip a stage through a shortcut.", c: "Logic outside the application code requires integration tests and discipline with migrations." },
+        { d: "The customer's choice separated from the store's check", w: "It reflects the real process: the customer chooses, but it is the store that checks what came back. That avoids closing a sale by mistake based only on what was said.", c: "One more step in the store's flow." },
+        { d: "Plain HTML, CSS and JavaScript with dependency-free Node functions", w: "Few moving parts, a simple deploy and nothing to update or to break on its own. The system is small enough for one person to understand it entirely.", c: "Without a framework's structure, code organization depends on discipline." },
+        { d: "A map with Leaflet and OpenStreetMap, and geocoding with Nominatim within its usage policy", w: "A free map with no key that shows where each bag is without breaking the service's limits.", c: "A limited query rate and a dependency on a third-party service." },
+      ],
+      quality: [
+        "73 integration test cases, including the access locks for anonymous users.",
+        "The documentation includes a troubleshooting page with every system message, what it means and what to do, and a technical section with architecture, database, threat model, installation and publishing.",
+        "The system's code is private; only the documentation is public, and it names neither the store nor customer data.",
+      ],
+      next: [
+        "Follow the store manager's feedback to decide what comes next: the scope grows from real use.",
+        "Generate the system-messages page from the code itself, so the documentation never diverges from the real messages.",
+      ],
+      note: "CondicionalMap's code is private. This case shows the system and its public documentation. The documentation is in Portuguese.",
+    },
+  },
 ];

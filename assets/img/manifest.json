@@ -35,6 +35,50 @@
     "w": 1400,
     "h": 984
   },
+  "cm-docs-intro": {
+    "w": 1400,
+    "h": 840
+  },
+  "cm-docs-ciclo": {
+    "w": 1400,
+    "h": 840
+  },
+  "cm-docs-problemas": {
+    "w": 1400,
+    "h": 840
+  },
+  "cm-app-painel": {
+    "w": 1400,
+    "h": 747
+  },
+  "cm-app-condicional": {
+    "w": 1400,
+    "h": 815
+  },
+  "cm-app-cliente": {
+    "w": 813,
+    "h": 860
+  },
+  "cm-diag-ciclo": {
+    "w": 900,
+    "h": 721
+  },
+  "cm-diag-banco": {
+    "w": 900,
+    "h": 757
+  },
+  "cm-diag-arq": {
+    "w": 900,
+    "h": 472
+  },
+  "jr-admin": {
+    "w": 1500,
+    "h": 696
+  },
+  "jr-vitrine": {
+    "w": 1274,
+    "h": 938
+  },
   "ap-table": {
     "w": 1400,
     "h": 984
